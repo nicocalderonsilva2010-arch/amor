@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!-- Configuración -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Título -->
+    <title>Para Ti ❤️</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Fondo -->
+    <div class="background">
+
+        <div class="gradient gradient-1"></div>
+
+        <div class="gradient gradient-2"></div>
+
+        <div class="gradient gradient-3"></div>
+
+        <div class="noise"></div>
+
+    </div>
+
+    <!-- Glow -->
+    <div class="mouse-glow"></div>
+
+    <!-- Corazones -->
+    <div id="hearts"></div>
+
+    <!-- Aplicación -->
+    <main class="app">
+            <!-- ================================= -->
+    <!-- PANTALLA 1 - INICIO -->
+    <!-- ================================= -->
+
+    <section id="inicio" class="page active">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <div class="logo-icon">❤</div>
+
+                <div>
+
+                    <h2>Para Ti</h2>
+
+                    <span>Luxury Edition</span>
+
+                </div>
+
+            </div>
+
+            <nav class="menu">
+
+                <button class="menu-item active">
+                    <span>🏠</span>
+                    <p>Inicio</p>
+                </button>
+
+                <button class="menu-item">
+                    <span>💌</span>
+                    <p>Carta</p>
+                </button>
+
+                <button class="menu-item">
+                    <span>🖼️</span>
+                    <p>Recuerdos</p>
+                </button>
+
+                <button class="menu-item">
+                    <span>❤️</span>
+                    <p>Nosotros</p>
+                </button>
+
+                <button class="menu-item">
+                    <span>🎵</span>
+                    <p>Música</p>
+                </button>
+
+                <button class="menu-item">
+                    <img class="menu-pet-icon" src="mascota/mascota.png" alt="">
+                    <p>Mascota</p>
+                </button>
+
+                <button class="menu-item">
+                    <span>🎬</span>
+                    <p>Final</p>
+                </button>
+
+            </nav>
+
+            <div class="side-footer">
+
+                <div class="now-playing">
+                    <div class="vinyl" aria-hidden="true">
+                        <span class="vinyl-label">♥</span>
+                    </div>
+
+                    <div class="track-info">
+                        <span class="track-status"><i></i> Sonando ahora</span>
+                        <strong>in the pool</strong>
+                        <span>Kensuke Ushio</span>
+                    </div>
+
+                    <button id="musicToggle" class="music-toggle" type="button" aria-label="Pausar música" title="Pausar música">
+                        <span class="pause-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- Contenido -->
+
+        <div class="home">
+
+            <!-- Texto -->
+
+            <div class="hero">
+
+                <span class="hero-top">
+
+                    Hecho únicamente para ti.
+
+                </span>
+
+                <h1>
+
+                    Bienvenida,
+                    mi amor.
+
+                </h1>
+
+                <p>
+
+                    Hay recuerdos que merecen un lugar especial.
+                    Construí este pequeño rincón para guardar
+                    todo lo que significas para mí.
+
+                </p>
+
+                <div class="login">
+
+                    <input
+                        id="password"
+                        type="text"
+                        placeholder="Escribe la contraseña..."
+                        autocomplete="off"
+                    >
+
+                    <button id="unlockBtn">
+
+                        Entrar
+
+                    </button>
+
+                </div>
+
+                <p id="unlockMessage" class="unlock-message" aria-live="polite"></p>
+
+            </div>
+                        <!-- =============================== -->
+            <!-- TARJETA PREMIUM -->
+            <!-- =============================== -->
+
+            <div class="hero-card">
+
+                <div class="card">
+
+                    <!-- Reflejo -->
+                    <div class="card-shine"></div>
+
+                    <!-- Imagen -->
+                    <img
+                        src="fotos/foto1.webp"
+                        alt="Nuestra foto"
+                        class="card-image"
+                    >
+
+                    <!-- Degradado -->
+                    <div class="card-overlay"></div>
+
+                    <!-- Información -->
+                    <div class="card-info">
+
+                        <span class="card-badge">
+
+                            ❤️ Mi persona favorita
+
+                        </span>
+
+                        <h2>
+
+                            Donde estés tú,
+                            siempre estará
+                            mi hogar.
+
+                        </h2>
+
+                        <p>
+
+                            04 · Mayo · 2026
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =============================== -->
+    <!-- CARTA -->
+    <!-- =============================== -->
+
+    <!-- ================================= -->
+<!-- PANTALLA 2 - CARTA -->
+<!-- ================================= -->
+
+<!-- =============================== -->
+<!-- CARTA -->
+<!-- =============================== -->
+
+<section id="carta" class="page">
+
+    <div class="letter-wrapper">
+
+        <div class="letter-glow"></div>
+
+        <div class="letter-card">
+
+            <div class="letter-top">
+
+                <span class="letter-pill">
+                    ❤️ Una carta escrita con el corazón
+                </span>
+
+            </div>
+
+            <h1 class="letter-title">
+                Antes de continuar...
+            </h1>
+
+            <p id="letterText" class="letter-text"></p>
+
+            <div class="letter-bottom">
+
+                <button id="continueBtn" class="premium-btn">
+                    Continuar →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+    <!-- =============================== -->
+    <!-- RECUERDOS -->
+    <!-- =============================== -->
+
+    <section id="recuerdos" class="page">
+
+        <div class="memories-section">
+
+            <header class="memories-heading">
+
+                <span class="hero-top">Nuestros pequeños instantes</span>
+
+                <h1>Recuerdos que<br>guardaría siempre.</h1>
+
+                <p>Cada foto tiene un pedacito de nosotros y una razón más para sonreír.</p>
+
+            </header>
+
+            <div class="memories-grid">
+
+                <article class="memory-card memory-card-featured">
+                    <img src="fotos/foto1.webp" alt="Un recuerdo especial juntos">
+                    <div class="memory-overlay">
+                        <span>01 · Tu luz</span>
+                        <h2>Tu carita hermosa y bella es mi vista favorita todos los días.</h2>
+                    </div>
+                </article>
+
+                <article class="memory-card">
+                    <img src="fotos/foto2.webp" alt="Una sonrisa que atesoro">
+                    <div class="memory-overlay">
+                        <span>02 · Mi persona favorita</span>
+                        <h2>Qué suerte la mía poder admirarte incluso en los momentos más simples.</h2>
+                    </div>
+                </article>
+
+                <article class="memory-card">
+                    <img src="fotos/foto3.webp" alt="Un momento para recordar">
+                    <div class="memory-overlay">
+                        <span>03 · Tan tú</span>
+                        <h2>Hay una forma tuya de existir que hace que todo se sienta más especial.</h2>
+                    </div>
+                </article>
+
+                <article class="memory-card">
+                    <img src="fotos/foto4.webp" alt="Un día juntos">
+                    <div class="memory-overlay">
+                        <span>04 · Mi inspiración</span>
+                        <h2>Si pudiera elegir de nuevo, seguiría encontrándote a ti.</h2>
+                    </div>
+                </article>
+
+                <article class="memory-card">
+                    <img src="fotos/foto5.webp" alt="Un recuerdo lleno de amor">
+                    <div class="memory-overlay">
+                        <span>05 · Aquí estoy yo</span>
+                        <h2>El que sonríe más bonito desde que tú llegaste a su vida.</h2>
+                    </div>
+                </article>
+
+                <article class="memory-card">
+                    <img src="fotos/foto6.webp" alt="Un recuerdo inolvidable">
+                    <div class="memory-overlay">
+                        <span>06 · Para ti</span>
+                        <h2>Todo esto existe porque tú haces que quiera guardar cada momento.</h2>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =============================== -->
+    <!-- NOSOTROS -->
+    <!-- =============================== -->
+
+    <section id="nosotros" class="page">
+
+        <div class="us-section">
+
+            <div class="us-intro">
+
+                <span class="hero-top">Nuestra historia</span>
+
+                <h1>Tú y yo,<br><em>mi lugar favorito.</em></h1>
+
+                <p>Desde que llegaste, todo se siente un poquito más bonito. No necesito grandes planes cuando la vida se siente bien simplemente contigo.</p>
+
+            </div>
+
+            <div class="us-layout">
+
+                <div class="us-visual" aria-label="Tú y yo">
+
+                    <span class="us-name">Tú</span>
+                    <span class="us-heart">♥</span>
+                    <span class="us-name">Yo</span>
+                    <p>Una historia que sigue escribiéndose.</p>
+
+                </div>
+
+                <div class="love-counter" aria-label="Tiempo desde el 4 de mayo de 2026">
+
+                    <span class="counter-label">Desde el 4 de mayo de 2026</span>
+
+                    <div class="counter-values">
+                        <div><strong id="loveDays">0</strong><span>días</span></div>
+                        <div><strong id="loveHours">0</strong><span>horas</span></div>
+                        <div><strong id="loveMinutes">0</strong><span>minutos</span></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="us-promises">
+
+                <article class="promise-card">
+                    <span>01</span>
+                    <h2>Lo que amo de ti</h2>
+                    <p>Tu forma de ser, tu carita linda y esa manera tan tuya de hacer especial cualquier momento.</p>
+                </article>
+
+                <article class="promise-card">
+                    <span>02</span>
+                    <h2>Mi promesa</h2>
+                    <p>Mientras tu papá te cuida desde el cielo, yo prometo cuidarte aquí en la tierra, junto a él y siempre para ti.</p>
+                </article>
+
+                <article class="promise-card">
+                    <span>03</span>
+                    <h2>Nuestro futuro</h2>
+                    <p>No sé exactamente qué viene, pero deseo que cada capítulo importante tenga tu nombre.</p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =============================== -->
+    <!-- MÚSICA -->
+    <!-- =============================== -->
+
+    <section id="musica" class="page">
+
+        <div class="music-section">
+            <header class="music-heading">
+                <span class="hero-top">Nuestra banda sonora</span>
+                <h1>Canciones que me<br>hacen <em>acordar de ti.</em></h1>
+                <p>Pega un enlace de Spotify y guárdalo como otro de nuestros pequeños recuerdos.</p>
+            </header>
+
+            <form id="spotifyForm" class="spotify-form">
+                <input id="spotifyLink" type="url" inputmode="url" placeholder="Pega aquí un enlace de Spotify" aria-label="Enlace de Spotify" required>
+                <button type="submit">Agregar canción</button>
+            </form>
+            <p id="spotifyMessage" class="spotify-message" aria-live="polite"></p>
+
+            <div id="spotifySongs" class="spotify-songs" aria-live="polite"></div>
+        </div>
+
+    </section>
+
+
+
+    <!-- =============================== -->
+    <!-- MASCOTA -->
+    <!-- =============================== -->
+
+    <section id="mascota" class="page">
+        <div id="kuromiWorld" class="kuromi-world">
+            <img class="ramen-stand" data-world-item="ramen" src="mascota/puestoderamen (2).png" alt="Puesto de ramen">
+            <img class="kuromi-house" data-world-item="house" src="mascota/casita.png" alt="La casita de Kuromi">
+            <button id="kuromiPet" class="kuromi-pet" type="button" aria-label="Kuromi, arrástrame"><img id="kuromiImage" src="mascota/mascota.png" alt="Kuromi"></button>
+            <div id="worldFoods" class="world-foods" aria-label="Alimentos de Kuromi"></div>
+
+            <button id="petPanelToggle" class="pet-panel-toggle" type="button" aria-expanded="false" aria-controls="petControlPanel">?</button>
+            <aside id="petControlPanel" class="pet-control-panel" hidden>
+                <button id="petPanelClose" class="pet-panel-close" type="button" aria-label="Cerrar panel">×</button>
+                <span class="pet-panel-label">Cuidemos a Kuromi</span>
+                <h1>Su progreso</h1>
+                <div class="pet-progress-copy"><strong id="petDays">0 de 3 días</strong><span id="petProgressText">Aún faltan 3 días para el final.</span></div>
+                <div class="pet-progress-track"><span id="petProgressBar"></span></div>
+                <p id="petFoodStatus" class="pet-food-status">Arrastra los tres alimentos hacia Kuromi.</p>
+                <button id="skinsToggle" class="pet-action" type="button">Cambiar skin</button>
+                <div id="skinsMenu" class="skins-menu" hidden>
+                    <button class="skin-button" type="button" data-skin="mascota"><img src="mascota/mascota.png" alt="Skin clásica">Clásica</button>
+                    <button class="skin-button" type="button" data-skin="skinmascota1"><img src="mascota/skinmascota1.png" alt="Skin 2">Skin 2</button>
+                    <button class="skin-button" type="button" data-skin="skinmascota2"><img src="mascota/skinmascota2.png" alt="Skin 3">Skin 3</button>
+                </div>
+                <button id="sendHome" class="pet-home-button" type="button">Llevar a Kuromi a casa</button>
+                <div class="pet-help"><strong>?</strong><p>Alimenta a Kuromi con los 3 alimentos cada día. Al completar 3 días se desbloqueará el final.</p></div>
+            </aside>
+
+            <aside id="adminPanel" class="admin-panel" hidden aria-label="Panel de administración">
+                <div class="admin-panel-title"><span>Panel privado</span><button id="adminPanelClose" type="button" aria-label="Cerrar panel">×</button></div>
+                <label class="admin-speed">Velocidad de Kuromi <strong id="petSpeedValue">1.0x</strong><input id="petSpeed" type="range" min="0.2" max="3" step="0.1" value="1"></label>
+                <div class="admin-options">
+                    <label><input class="admin-world-toggle" data-admin-item="ramen" type="checkbox" checked> Mostrar ramen</label>
+                    <label><input class="admin-world-toggle" data-admin-item="house" type="checkbox" checked> Mostrar casita</label>
+                    <label><input class="admin-world-toggle" data-admin-item="foods" type="checkbox" checked> Mostrar alimentos</label>
+                </div>
+                <div class="admin-final-controls">
+                    <span>Final</span>
+                    <p id="adminFinalStatus">Bloqueado</p>
+                    <button id="unlockFinalAdmin" class="admin-unlock" type="button">Desbloquear final</button>
+                    <button id="lockFinalAdmin" class="admin-lock" type="button">Quitar desbloqueo manual</button>
+                </div>
+                <button id="resetPetProgress" class="admin-reset" type="button">Reiniciar avance de comida</button>
+                <p>En computador también puedes abrir este panel con R + C.</p>
+            </aside>
+        </div>
+    </section>
+
+
+
+    <!-- =============================== -->
+    <!-- FINAL -->
+    <!-- =============================== -->
+
+    <section id="final" class="page">
+
+        <div class="final-section">
+            <span class="final-kicker">Un mensaje solo para ti</span>
+            <div class="final-flower" aria-hidden="true">✿</div>
+            <h1>TE AMO</h1>
+            <p class="final-intro">Guarda este momento para nosotros dos. Hay algo que quiero decirte desde el corazón.</p>
+            <div class="final-video-frame">
+                <video id="finalVideo" class="final-video" preload="metadata" controls playsinline muted>
+                    <source src="final/video final.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+                <button id="finalSoundToggle" class="final-sound-toggle" type="button">🔊 Escuchar con sonido</button>
+                <a class="final-download" href="final/video final.mp4" download="Para ti - video final.mp4">↓ Descargar nuestro video</a>
+            </div>
+            <span class="final-signature">Tú, yo y todo lo bonito que viene. ♡</span>
+        </div>
+
+    </section>
+        <!-- =============================== -->
+    <!-- MÚSICA -->
+    <!-- =============================== -->
+
+    <audio
+        id="backgroundMusic"
+        src="musica/musica1.mp3"
+        loop
+    ></audio>
+
+
+
+    <!-- =============================== -->
+    <!-- EFECTOS GLOBALES -->
+    <!-- =============================== -->
+
+    <!-- Pantalla de transición -->
+    <div id="transition"></div>
+    <div id="heartRain" aria-hidden="true"></div>
+
+    <!-- Luz del cursor -->
+    <div class="cursor-light"></div>
+
+    <!-- Partículas -->
+    <div id="particles"></div>
+
+</main>
+
+
+
+<!-- =============================== -->
+<!-- JAVASCRIPT -->
+<!-- =============================== -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
