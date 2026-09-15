@@ -443,6 +443,34 @@ function goToPage(pageId){
 
     }
 
+    handleFinalMedia(pageId);
+
+}
+
+function handleFinalMedia(pageId){
+
+    if(!finalVideo) return;
+
+    if(pageId === "final"){
+        resumeBackgroundMusicAfterFinal = Boolean(music && !music.paused);
+        music?.pause();
+        finalVideo.currentTime = 0;
+        finalVideo.muted = true;
+        if(finalSoundToggle) finalSoundToggle.textContent = "Activar sonido";
+        finalVideo.play().catch(()=>{});
+        return;
+    }
+
+    finalVideo.pause();
+    finalVideo.currentTime = 0;
+    loveAudio?.pause();
+    if(loveAudio) loveAudio.currentTime = 0;
+
+    if(resumeBackgroundMusicAfterFinal && music){
+        music.play().catch(()=>{});
+        resumeBackgroundMusicAfterFinal = false;
+    }
+
 }
 
 
@@ -581,30 +609,6 @@ function isSpotifyLink(link){
 
     }
 
-    if(finalVideo){
-
-        if(pageId === "final"){
-            resumeBackgroundMusicAfterFinal = Boolean(music && !music.paused);
-            music?.pause();
-            finalVideo.currentTime = 0;
-            finalVideo.muted = true;
-            finalSoundToggle && (finalSoundToggle.textContent = "🔊 Escuchar con sonido");
-            finalVideo.play().catch(()=>{});
-        }
-        else{
-            finalVideo.pause();
-            finalVideo.currentTime = 0;
-            loveAudio?.pause();
-            if(loveAudio) loveAudio.currentTime = 0;
-
-            if(resumeBackgroundMusicAfterFinal && music){
-                music.play().catch(()=>{});
-                resumeBackgroundMusicAfterFinal = false;
-            }
-        }
-
-    }
-
 }
 
 function createSpotifyCard(link){
@@ -729,7 +733,8 @@ if(letterText){
                     KUROMI
 ==================================================*/
 
-const petStorageKey = "para-ti-kuromi-progress-v2";
+// Un ciclo nuevo evita que el progreso anterior deje el final abierto.
+const petStorageKey = "para-ti-kuromi-progress-v3";
 const petAdminStorageKey = "para-ti-kuromi-admin";
 const petFoods = ["alimento1", "alimento2", "alimento3"];
 
@@ -808,7 +813,7 @@ function getCompletedDays(state = getPetState()){
 
 function isFinalUnlocked(){
 
-    return getPetAdminSettings().finalOverride || getCompletedDays() >= 3;
+    return getCompletedDays() >= 3;
 
 }
 
