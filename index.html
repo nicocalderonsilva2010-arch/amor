@@ -75,23 +75,28 @@
                 </button>
 
                 <button class="menu-item">
-                    <span>💌</span>
+                    <span>✉️</span>
                     <p>Carta</p>
                 </button>
 
                 <button class="menu-item">
-                    <span>🖼️</span>
+                    <span>📸</span>
                     <p>Recuerdos</p>
                 </button>
 
                 <button class="menu-item">
-                    <span>❤️</span>
+                    <span>🫶</span>
                     <p>Nosotros</p>
                 </button>
 
                 <button class="menu-item">
-                    <span>🎵</span>
+                    <span>🎧</span>
                     <p>Música</p>
+                </button>
+
+                <button class="menu-item">
+                    <span>💬</span>
+                    <p>Mensajes</p>
                 </button>
 
                 <button class="menu-item">
@@ -100,7 +105,7 @@
                 </button>
 
                 <button class="menu-item">
-                    <span>🎬</span>
+                    <span>🎁</span>
                     <p>Final</p>
                 </button>
 
@@ -113,7 +118,7 @@
                         <span class="vinyl-label">♥</span>
                     </div>
 
-                    <div class="track-info">
+                    <div id="mobilePlayerDetails" class="track-info">
                         <span class="track-status"><i></i> Sonando ahora</span>
                         <strong>in the pool</strong>
                         <span>Kensuke Ushio</span>
@@ -121,6 +126,10 @@
 
                     <button id="musicToggle" class="music-toggle" type="button" aria-label="Pausar música" title="Pausar música">
                         <span class="pause-icon" aria-hidden="true"></span>
+                    </button>
+
+                    <button id="playerExpand" class="player-expand" type="button" aria-expanded="false" aria-controls="mobilePlayerDetails">
+                        <span aria-hidden="true">⌃</span><span class="sr-only">Mostrar reproductor</span>
                     </button>
                 </div>
 
@@ -346,7 +355,7 @@
                 </article>
 
                 <article class="memory-card">
-                    <img src="fotos/foto6.webp" alt="Un recuerdo inolvidable">
+                    <img src="fotos/foto6.png" alt="Un recuerdo inolvidable">
                     <div class="memory-overlay">
                         <span>06 · Para ti</span>
                         <h2>Todo esto existe porque tú haces que quiera guardar cada momento.</h2>
@@ -392,7 +401,7 @@
 
                 <div class="love-counter" aria-label="Tiempo desde el 4 de mayo de 2026">
 
-                    <span class="counter-label">Desde el 4 de mayo de 2026</span>
+                    <span class="counter-label"><span aria-hidden="true">🕰️</span> Desde el 4 de mayo de 2026</span>
 
                     <div class="counter-values">
                         <div><strong id="loveDays">0</strong><span>días</span></div>
@@ -456,6 +465,39 @@
 
     </section>
 
+    <!-- =============================== -->
+    <!-- MENSAJES -->
+    <!-- =============================== -->
+
+    <section id="mensajes" class="page">
+        <div class="messages-section">
+            <header class="messages-heading">
+                <span class="hero-top">Palabras que atesoro</span>
+                <h1>Mensajes que<br><em>nos unen.</em></h1>
+                <p>Pequeños pedacitos de nuestras conversaciones, promesas y razones para seguir eligiéndonos cada día.</p>
+            </header>
+
+            <div class="messages-grid">
+                <article class="message-card" data-message-slot="1">
+                    <div class="message-frame"><div class="message-placeholder"><span>01</span><strong>Un mensaje especial</strong><small>Esperando tu captura</small></div></div>
+                    <p>Una de esas palabras que siempre quiero guardar.</p>
+                </article>
+                <article class="message-card" data-message-slot="2">
+                    <div class="message-frame"><div class="message-placeholder"><span>02</span><strong>Nuestra promesa</strong><small>Esperando tu captura</small></div></div>
+                    <p>Lo que construimos con amor, paciencia y ganas.</p>
+                </article>
+                <article class="message-card" data-message-slot="3">
+                    <div class="message-frame"><div class="message-placeholder"><span>03</span><strong>Para recordarnos</strong><small>Esperando tu captura</small></div></div>
+                    <p>Un recuerdo que me da fuerzas para seguir mejorando.</p>
+                </article>
+                <article class="message-card" data-message-slot="4">
+                    <div class="message-frame"><div class="message-placeholder"><span>04</span><strong>Siempre nosotros</strong><small>Esperando tu captura</small></div></div>
+                    <p>Porque cada conversación contigo también es un hogar.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
 
 
     <!-- =============================== -->
@@ -484,7 +526,7 @@
                     <button class="skin-button" type="button" data-skin="skinmascota2"><img src="mascota/skinmascota2.png" alt="Skin 3">Skin 3</button>
                 </div>
                 <button id="sendHome" class="pet-home-button" type="button">Llevar a Kuromi a casa</button>
-                <div class="pet-help"><strong>?</strong><p>Alimenta a Kuromi con los 3 alimentos cada día. Al completar 3 días se desbloqueará el final.</p></div>
+                <div class="pet-help"><strong aria-hidden="true">🎁</strong><p>Alimenta a Kuromi con los 3 alimentos cada día. Al completar 3 días se desbloqueará el final.</p></div>
             </aside>
 
             <aside id="adminPanel" class="admin-panel" hidden aria-label="Panel de administración">
@@ -514,19 +556,51 @@
     <!-- =============================== -->
 
     <section id="final" class="page">
-
+        <div class="final-blooms" aria-hidden="true">
+            <span class="bloom bloom-1">✿</span><span class="bloom bloom-2">✽</span>
+            <span class="bloom bloom-3">❀</span><span class="bloom bloom-4">✿</span>
+            <span class="bloom bloom-5">✽</span><span class="bloom bloom-6">❀</span>
+        </div>
         <div class="final-section">
-            <span class="final-kicker">Un mensaje solo para ti</span>
-            <div class="final-flower" aria-hidden="true">✿</div>
-            <h1>TE AMO</h1>
-            <p class="final-intro">Guarda este momento para nosotros dos. Hay algo que quiero decirte desde el corazón.</p>
-            <div class="final-video-frame">
-                <video id="finalVideo" class="final-video" preload="metadata" controls playsinline muted>
-                    <source src="final/video final.mp4" type="video/mp4">
-                    Tu navegador no soporta videos.
-                </video>
-                <button id="finalSoundToggle" class="final-sound-toggle" type="button">🔊 Escuchar con sonido</button>
-                <a class="final-download" href="final/video final.mp4" download="Para ti - video final.mp4">↓ Descargar nuestro video</a>
+            <header class="final-header">
+                <span class="final-kicker">Dos regalos, un solo corazón</span>
+                <div class="final-flower" aria-hidden="true">✿</div>
+                <h1>Para ti,<br><em>mi amor.</em></h1>
+                <p class="final-intro">Guardé estos dos pedacitos de mí para que los escuches y los veas cuando quieras sentirme cerquita.</p>
+            </header>
+
+            <div class="final-gifts">
+                <article class="final-gift video-gift">
+                    <div class="gift-label"><span>01</span> Nuestro video</div>
+                    <div class="final-video-frame">
+                        <video id="finalVideo" class="final-video" preload="metadata" controls playsinline muted>
+                            <source src="final/video final.mp4" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
+                    <div class="gift-actions">
+                        <button id="finalSoundToggle" class="gift-action sound-action" type="button">🔊 Activar sonido</button>
+                        <a class="gift-action download-action" href="final/video final.mp4" download="Para ti - video final.mp4">↓ Descargar video</a>
+                    </div>
+                </article>
+
+                <article class="final-gift audio-gift">
+                    <div class="gift-label"><span>02</span> Una carta para tus oídos</div>
+                    <img class="audio-cover" src="audio/portada.png" alt="Portada del audio Amor mío">
+                    <div class="audio-copy"><span>Para cuando quieras escucharme</span><h2>Amor mío</h2></div>
+                    <audio id="loveAudio" class="love-audio" preload="metadata">
+                        <source src="audio/para mi amor.mp3" type="audio/mpeg">
+                        Tu navegador no puede reproducir este audio.
+                    </audio>
+                    <div class="audio-player">
+                        <button id="loveAudioToggle" class="audio-play" type="button" aria-label="Reproducir Amor mío"><span aria-hidden="true"></span></button>
+                        <div class="audio-timeline">
+                            <input id="loveAudioProgress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progreso de Amor mío">
+                            <span id="loveAudioTime">0:00 · 0:00</span>
+                        </div>
+                    </div>
+                    <a class="gift-action download-action audio-download" href="audio/para mi amor.mp3" download="Amor mío.mp3">↓ Descargar “Amor mío”</a>
+                </article>
             </div>
             <span class="final-signature">Tú, yo y todo lo bonito que viene. ♡</span>
         </div>

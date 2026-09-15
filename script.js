@@ -25,6 +25,7 @@ const unlockMessage = document.getElementById("unlockMessage");
 // Audio
 const music = document.getElementById("backgroundMusic");
 const musicToggle = document.getElementById("musicToggle");
+const playerExpand = document.getElementById("playerExpand");
 
 // Volumen de la música de fondo (40%).
 if(music){
@@ -77,6 +78,18 @@ if(musicToggle && music){
 
 }
 
+if(playerExpand){
+
+    playerExpand.addEventListener("click", ()=>{
+
+        const isOpen = document.body.classList.toggle("mobile-player-open");
+        playerExpand.setAttribute("aria-expanded", String(isOpen));
+        playerExpand.querySelector(".sr-only").textContent = isOpen ? "Ocultar reproductor" : "Mostrar reproductor";
+
+    });
+
+}
+
 // Transición
 const transition = document.getElementById("transition");
 const heartRain = document.getElementById("heartRain");
@@ -110,6 +123,20 @@ const lockFinalAdmin = document.getElementById("lockFinalAdmin");
 const adminFinalStatus = document.getElementById("adminFinalStatus");
 const finalVideo = document.getElementById("finalVideo");
 const finalSoundToggle = document.getElementById("finalSoundToggle");
+const loveAudio = document.getElementById("loveAudio");
+const loveAudioToggle = document.getElementById("loveAudioToggle");
+const loveAudioProgress = document.getElementById("loveAudioProgress");
+const loveAudioTime = document.getElementById("loveAudioTime");
+
+function silenceBackgroundMusicForGift(){
+
+    if(music && !music.paused){
+        // Al salir del final se recupera la música de fondo como antes.
+        resumeBackgroundMusicAfterFinal = true;
+        music.pause();
+    }
+
+}
 
 // El panel debe acompañar todas las secciones, no solo la pantalla de inicio.
 if(sidebar && app){
@@ -128,6 +155,8 @@ const loveMinutes = document.getElementById("loveMinutes");
 // Evita que varias pulsaciones dejen una transición pendiente.
 let transitionTimer;
 let heartRainTimer;
+let heartRainExitTimer;
+let transitionExitTimer;
 let resumeBackgroundMusicAfterFinal = false;
 
 // Las secciones privadas permanecen cerradas hasta validar la contraseña.
@@ -333,6 +362,8 @@ const pageNames = [
 
     "musica",
 
+    "mensajes",
+
     "mascota",
 
     "final"
@@ -423,14 +454,22 @@ function goToPage(pageId){
 function transitionTo(pageId){
 
     clearTimeout(transitionTimer);
+    clearTimeout(heartRainExitTimer);
+    clearTimeout(transitionExitTimer);
 
+    // El negro y los corazones entran a la vez; la transición debe sentirse ágil.
+    transition?.classList.add("show");
     createHeartRain(pageId === "final");
 
     transitionTimer = setTimeout(()=>{
 
         goToPage(pageId);
 
-    }, 900);
+    }, 300);
+
+    // Salen juntos, sin dejar una pantalla negra al terminar la lluvia.
+    heartRainExitTimer = setTimeout(()=> heartRain?.classList.remove("show"), 1900);
+    transitionExitTimer = setTimeout(()=> transition?.classList.remove("show"), 2120);
 
 }
 
@@ -444,17 +483,17 @@ function createHeartRain(isFinalMoment = false){
 
     const hearts = ["♥", "❤", "♡", "💗", "💕"];
 
-    // Menos elementos a la vez, pero más grandes: se ve intenso sin recargar el navegador.
-    for(let index = 0; index < 180; index++){
+    // Una lluvia abundante y ligera: más pétalos, con una caída más delicada.
+    for(let index = 0; index < 175; index++){
 
         const heart = document.createElement("span");
         heart.className = "rain-heart";
         heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
         heart.style.setProperty("--x", `${Math.random() * 108 - 4}vw`);
-        heart.style.setProperty("--delay", `${Math.random() * 1.15}s`);
-        heart.style.setProperty("--duration", `${2.4 + Math.random() * 1.1}s`);
-        heart.style.setProperty("--size", `${26 + Math.random() * 30}px`);
-        heart.style.setProperty("--drift", `${Math.random() * 150 - 75}px`);
+        heart.style.setProperty("--delay", `${Math.random() * .38}s`);
+        heart.style.setProperty("--duration", `${1.55 + Math.random() * .55}s`);
+        heart.style.setProperty("--size", `${18 + Math.random() * 25}px`);
+        heart.style.setProperty("--drift", `${Math.random() * 100 - 50}px`);
         heartRain.appendChild(heart);
 
     }
@@ -470,7 +509,7 @@ function createHeartRain(isFinalMoment = false){
         heartRain.classList.remove("show");
         setTimeout(()=> heartRain.replaceChildren(), 450);
 
-    }, 4700);
+    }, 2450);
 
 }
 
@@ -486,6 +525,41 @@ const defaultSpotifySongs = [
     "https://open.spotify.com/intl-es/track/791SeQLJ0mcwZALYEIlb2V?si=79a1460c5ae74fdb"
 
 ];
+
+/* Las capturas pueden ser PNG, JPG, WEBP o JPEG. Se muestran al encontrarlas
+   y la tarjeta conserva un estado bonito mientras la carpeta aún está vacía. */
+document.querySelectorAll("[data-message-slot]").forEach((card)=>{
+
+    const slot = card.dataset.messageSlot;
+    const frame = card.querySelector(".message-frame");
+    // También reconoce nombres exportados por Windows como "mensaje1.png.png".
+    const extensions = ["png.png", "png", "jpg", "webp", "jpeg"];
+    let extensionIndex = 0;
+
+    function loadMessageImage(){
+
+        if(extensionIndex >= extensions.length) return;
+
+        const image = new Image();
+        image.src = `mensajes/mensaje${slot}.${extensions[extensionIndex]}`;
+        image.alt = `Mensaje especial ${slot}`;
+
+        image.addEventListener("load", ()=>{
+            frame.replaceChildren(image);
+            card.classList.add("has-message-image");
+            frame.style.setProperty("--message-ratio", `${image.naturalWidth} / ${image.naturalHeight}`);
+        }, { once:true });
+
+        image.addEventListener("error", ()=>{
+            extensionIndex += 1;
+            loadMessageImage();
+        }, { once:true });
+
+    }
+
+    loadMessageImage();
+
+});
 
 function showSpotifyMessage(message){
 
@@ -520,6 +594,8 @@ function isSpotifyLink(link){
         else{
             finalVideo.pause();
             finalVideo.currentTime = 0;
+            loveAudio?.pause();
+            if(loveAudio) loveAudio.currentTime = 0;
 
             if(resumeBackgroundMusicAfterFinal && music){
                 music.play().catch(()=>{});
@@ -1096,6 +1172,64 @@ finalSoundToggle?.addEventListener("click", ()=>{
     finalVideo.play().catch(()=>{});
 
 });
+
+finalVideo?.addEventListener("play", ()=>{
+
+    silenceBackgroundMusicForGift();
+    loveAudio?.pause();
+
+});
+
+function formatAudioTime(seconds){
+
+    if(!Number.isFinite(seconds)) return "0:00";
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, "0");
+    return `${minutes}:${remainingSeconds}`;
+
+}
+
+function updateLoveAudioPlayer(){
+
+    if(!loveAudio) return;
+    const duration = Number.isFinite(loveAudio.duration) ? loveAudio.duration : 0;
+    const current = loveAudio.currentTime || 0;
+
+    if(loveAudioProgress) loveAudioProgress.value = duration ? (current / duration) * 100 : 0;
+    if(loveAudioTime) loveAudioTime.textContent = `${formatAudioTime(current)} · ${formatAudioTime(duration)}`;
+    if(loveAudioToggle){
+        const playing = !loveAudio.paused;
+        loveAudioToggle.classList.toggle("is-playing", playing);
+        loveAudioToggle.setAttribute("aria-label", playing ? "Pausar Amor mío" : "Reproducir Amor mío");
+    }
+
+}
+
+loveAudioToggle?.addEventListener("click", ()=>{
+
+    if(!loveAudio) return;
+    if(loveAudio.paused) loveAudio.play().catch(()=>{});
+    else loveAudio.pause();
+
+});
+
+loveAudioProgress?.addEventListener("input", ()=>{
+
+    if(loveAudio && Number.isFinite(loveAudio.duration)) loveAudio.currentTime = loveAudio.duration * (Number(loveAudioProgress.value) / 100);
+
+});
+
+loveAudio?.addEventListener("loadedmetadata", updateLoveAudioPlayer);
+loveAudio?.addEventListener("timeupdate", updateLoveAudioPlayer);
+loveAudio?.addEventListener("play", ()=>{
+
+    silenceBackgroundMusicForGift();
+    finalVideo?.pause();
+    updateLoveAudioPlayer();
+
+});
+loveAudio?.addEventListener("pause", updateLoveAudioPlayer);
+loveAudio?.addEventListener("ended", updateLoveAudioPlayer);
 
 const adminKeys = new Set();
 
